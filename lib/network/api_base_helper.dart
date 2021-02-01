@@ -4,7 +4,7 @@ import "package:dio/dio.dart";
 import "api_exception.dart";
 
 class APIBaseHelper {
-  final String _baseUrl = "https://apilaravel.teknoguna.com/api_simple_customer/";
+  final String _baseUrl = "https://localhost/api_simple_customer/";
   Dio _dio = Dio();
 
   Future<dynamic> get(String url) async {
