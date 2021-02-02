@@ -179,7 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Container(
         height: height,
         child: BlocProvider(
-          create: (context) => RegisterBloc(RegisterRepository())..add(Register()),
+          create: (context) => RegisterBloc(RegisterRepository()),
           child: BlocListener<RegisterBloc, RegisterState>(
             listener: (context, state) {
               if (state is RegisterLoading) {

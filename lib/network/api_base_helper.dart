@@ -4,10 +4,10 @@ import "package:dio/dio.dart";
 import "api_exception.dart";
 
 class APIBaseHelper {
-  final String _baseUrl = "https://localhost/api_simple_customer/";
+  final String _baseUrl = "https://apilaravel.teknoguna.com/api_simple_customer/";
   Dio _dio = Dio();
 
-  Future<dynamic> get(String url) async {
+  Future<Response> get(String url) async {
     var responseJson;
     try {
       final response = await _dio.get(_baseUrl + url);
@@ -18,7 +18,7 @@ class APIBaseHelper {
     return responseJson;
   }
 
-  Future<dynamic> post(String url, {FormData formData}) async {
+  Future<Response> post(String url, {FormData formData}) async {
     var responseJson;
     try {
       final response = await _dio.post(_baseUrl + url, data: formData);
@@ -32,9 +32,7 @@ class APIBaseHelper {
   dynamic _returnResponse(Response response) {
     switch (response.statusCode) {
       case 200:
-        var responseJson = json.decode(response.statusMessage);
-        print(responseJson);
-        return responseJson;
+        return response;
       case 400:
         throw BadRequestException(response.statusMessage);
       case 401:
