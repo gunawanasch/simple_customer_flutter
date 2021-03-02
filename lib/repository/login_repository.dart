@@ -1,18 +1,16 @@
 import 'package:dio/dio.dart';
-import 'package:simple_customer_flutter/model/register_model.dart';
 import 'package:simple_customer_flutter/network/api_base_helper.dart';
 
-class RegisterRepository {
+class LoginRepository {
   APIBaseHelper _helper = APIBaseHelper();
 
-  Future<Response> register(String name, String email, String password) async {
+  Future<Response> login(String email, String password) async {
     FormData formData = new FormData.fromMap({
-      "name": name,
       "email": email,
       "password": password,
     });
 
-    Response response = await _helper.post("user/register",
+    Response response = await _helper.post("user/login",
       formData: formData,
     );
 

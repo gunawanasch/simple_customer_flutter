@@ -20,5 +20,5 @@ class Register extends RegisterEvent {
   List<Object> get props => [name, email, password];
 
   @override
-  String toString() => 'Register { name: $name, email: $email, password: $password }';
+  String toString() => "Register { name: $name, email: $email, password: $password }";
 }

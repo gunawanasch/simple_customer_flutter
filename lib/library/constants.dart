@@ -1,1 +1,0 @@
-const baseUrl = "https://apilaravel.teknoguna.com/api_simple_customer/";

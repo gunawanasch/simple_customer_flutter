@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_customer_flutter/bloc/register/register_event.dart';
 import 'package:simple_customer_flutter/bloc/register/register_state.dart';

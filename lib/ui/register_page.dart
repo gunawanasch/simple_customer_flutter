@@ -15,7 +15,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  int _stateLoading = 0;
+  String _stateLoading = "stop";
 
   Widget _backImage() {
     return GestureDetector(
@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
           elevation: 5,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
           child: Container(
-            padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(10),
             child: Image.asset(
               "assets/images/ic_back.png",
               fit: BoxFit.contain,
@@ -131,6 +131,7 @@ class _RegisterPageState extends State<RegisterPage> {
         }
       },
       child: Container(
+        height: 55,
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(vertical: 15),
         alignment: Alignment.center,
@@ -154,17 +155,21 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget setUpLoadingRegister() {
-    if (_stateLoading == 0) {
-      return new Text(
+    if (_stateLoading == "stop") {
+      return Text(
         "Register",
         style: TextStyle(
-          fontSize: 20.0,
+          fontSize: 20,
           color: White,
         ),
       );
-    } else if (_stateLoading == 1) {
-      return CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+    } else if (_stateLoading == "loading") {
+      return SizedBox(
+        height: 25,
+        width: 25,
+        child: CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+        ),
       );
     } else {
       return Icon(Icons.check, color: Colors.white);
@@ -184,20 +189,22 @@ class _RegisterPageState extends State<RegisterPage> {
             listener: (context, state) {
               if (state is RegisterLoading) {
                 setState(() {
-                  _stateLoading = 1;
+                  _stateLoading = "loading";
                 });
               }
               if (state is RegisterSuccess) {
                 setState(() {
-                  _stateLoading = 2;
+                  _stateLoading = "success";
                 });
-                Navigator.pop(context);
+                Future.delayed(Duration(milliseconds: 500), () {
+                  Navigator.pop(context);
+                });
               } else if (state is RegisterError) {
                 setState(() {
-                  _stateLoading = 0;
+                  _stateLoading = "stop";
                 });
                 Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text('${state.message}'),
+                  content: Text("${state.message}"),
                 ));
               }
             },
@@ -252,54 +259,6 @@ class _RegisterPageState extends State<RegisterPage> {
         )
       ),
     );
-
-
-    // return Scaffold(
-    //   body: Container(
-    //     height: height,
-    //     child: Stack(
-    //       children: <Widget>[
-    //         Container(
-    //           padding: EdgeInsets.symmetric(horizontal: 10),
-    //           child: SingleChildScrollView(
-    //             child: Column(
-    //               crossAxisAlignment: CrossAxisAlignment.start,
-    //               children: <Widget>[
-    //                 SizedBox(height: 40),
-    //                 _backImage(),
-    //                 Container(
-    //                   padding: EdgeInsets.symmetric(horizontal: 10),
-    //                   child: Column(
-    //                     crossAxisAlignment: CrossAxisAlignment.start,
-    //                     children: [
-    //                       SizedBox(height: 20),
-    //                       Text(
-    //                         'Register',
-    //                         style: TextStyle(
-    //                           color: PrimaryColor,
-    //                           fontSize: 30,
-    //                           fontWeight: FontWeight.bold,
-    //                         ),
-    //                       ),
-    //                       SizedBox(height: 40),
-    //                       _nameTextField(),
-    //                       SizedBox(height: 20),
-    //                       _emailTextField(),
-    //                       SizedBox(height: 20),
-    //                       _passwordTextField(),
-    //                       SizedBox(height: 40),
-    //                       _registerButton(),
-    //                     ],
-    //                   ),
-    //                 ),
-    //               ],
-    //             ),
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 
 }
