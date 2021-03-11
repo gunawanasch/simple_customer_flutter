@@ -1,6 +1,7 @@
 import 'dart:ui';
 
-const PrimaryColor  = const Color(0xFFF7892B);
+const PrimaryColor  = const Color(0xFFFF5722);
+const AccentColor   = const Color(0xFFFF3D00);
 const Yellow        = const Color(0xFFFBB448);
 const White         = const Color(0xFFFFFFFF);
 const Blue1         = const Color(0xFF4CAAf0);

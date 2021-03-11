@@ -113,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
             builder: (ctx) => AlertDialog(
               content: Text("Please complete all field."),
               actions: <Widget>[
-                FlatButton(
+                TextButton(
                   onPressed: () {
                     Navigator.of(ctx).pop();
                   },
@@ -203,9 +203,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 setState(() {
                   _stateLoading = "stop";
                 });
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text("${state.message}"),
-                ));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("${state.message}")));
               }
             },
             child: BlocBuilder<RegisterBloc, RegisterState>(
@@ -256,7 +255,7 @@ class _RegisterPageState extends State<RegisterPage> {
               },
             ),
           ),
-        )
+        ),
       ),
     );
   }

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_customer_flutter/bloc/login/login_bloc.dart';
 import 'package:simple_customer_flutter/bloc/login/login_event.dart';
 import 'package:simple_customer_flutter/bloc/login/login_state.dart';
 import 'package:simple_customer_flutter/library/colors.dart';
 import 'package:simple_customer_flutter/library/custom_loading.dart';
 import 'package:simple_customer_flutter/repository/login_repository.dart';
+import 'package:simple_customer_flutter/ui/main_menu_page.dart';
 import 'package:simple_customer_flutter/ui/register_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -80,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
             builder: (ctx) => AlertDialog(
               content: Text("Please complete all field."),
               actions: <Widget>[
-                FlatButton(
+                TextButton(
                   onPressed: () {
                     Navigator.of(ctx).pop();
                   },
@@ -175,7 +177,7 @@ class _LoginPageState extends State<LoginPage> {
           child: BlocProvider(
             create: (context) => LoginBloc(LoginRepository()),
             child: BlocListener<LoginBloc, LoginState>(
-              listener: (context, state) {
+              listener: (context, state) async {
                 if (state is LoginLoading) {
                   showDialog(context: context,
                       builder: (BuildContext context){
@@ -184,21 +186,25 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 }
                 if (state is LoginSuccess) {
-                  if (state.loginModel.status == 1) {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text("${state.loginModel.message}"),
-                    ));
-                  } else {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text("Username/password is wrong"),
-                    ));
-                  }
                   Navigator.of(context).pop();
+                  if (state.loginModel.status == 1) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("${state.loginModel.message}")));
+                    SharedPreferences sp = await SharedPreferences.getInstance();
+                    await sp.setInt("idUser", state.loginModel.idUser);
+                    await sp.setString("name", state.loginModel.name);
+                    await sp.setString("email", state.loginModel.email);
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (_) => MainMenuPage())
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Username/password is wrong")));
+                  }
                 } else if (state is LoginError) {
                   Navigator.of(context).pop();
-                  Scaffold.of(context).showSnackBar(SnackBar(
-                    content: Text("${state.message}"),
-                  ));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("${state.message}")));
                 }
               },
               child: BlocBuilder<LoginBloc, LoginState>(

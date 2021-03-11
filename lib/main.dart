@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_customer_flutter/ui/login_page.dart';
+import 'package:simple_customer_flutter/library/colors.dart';
+import 'package:simple_customer_flutter/ui/splash_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,9 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "Simple Data Customer",
       theme: ThemeData(
-          primarySwatch: Colors.deepOrange
+        primaryColor: PrimaryColor,
+        primaryColorLight: PrimaryColor,
+        accentColor: AccentColor,
       ),
-      home: LoginPage(),
+      home: SplashPage(),
     );
   }
 }

@@ -4,7 +4,7 @@ import "package:dio/dio.dart";
 import "api_exception.dart";
 
 class APIBaseHelper {
-  final String _baseUrl = "http://baseurl/api_simple_customer/";
+  final String _baseUrl = "https://baseurl/api_simple_customer/";
   Dio _dio = Dio();
 
   Future<Response> get(String url) async {
