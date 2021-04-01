@@ -1,4 +1,4 @@
-class GetAllCustomerModel {
+class DetailCustomerInfoModel {
   int idCustomerInfo;
   String name;
   String phone;
@@ -7,7 +7,7 @@ class GetAllCustomerModel {
   String city;
   String createdDate;
 
-  GetAllCustomerModel(
+  DetailCustomerInfoModel(
       {this.idCustomerInfo,
         this.name,
         this.phone,
@@ -16,7 +16,7 @@ class GetAllCustomerModel {
         this.city,
         this.createdDate});
 
-  GetAllCustomerModel.fromJson(Map<String, dynamic> json) {
+  DetailCustomerInfoModel.fromJson(Map<String, dynamic> json) {
     idCustomerInfo = json['id_customer_info'];
     name = json['name'];
     phone = json['phone'];

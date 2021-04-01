@@ -4,14 +4,14 @@ import 'package:flutter/scheduler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:simple_customer_flutter/library/colors.dart';
 import 'package:simple_customer_flutter/library/drawer_item.dart';
-import 'package:simple_customer_flutter/ui/customer_page.dart';
+import 'package:simple_customer_flutter/ui/customer_info_page.dart';
 import 'package:simple_customer_flutter/ui/login_page.dart';
 
 import 'about_page.dart';
 
 class MainMenuPage extends StatefulWidget {
   final _listDrawer = [
-    DrawerItem("Customer", Icons.note),
+    DrawerItem("Customer Info", Icons.note),
     DrawerItem("About", Icons.help),
     DrawerItem("Logout", Icons.logout),
   ];
@@ -42,7 +42,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return CustomerPage();
+        return CustomerInfoPage();
       case 1:
         return AboutPage();
       case 2:
