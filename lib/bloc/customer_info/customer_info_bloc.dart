@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_customer_flutter/model/customer_info_model.dart';
 import 'package:simple_customer_flutter/repository/customer_info_repository.dart';
@@ -21,7 +23,11 @@ class CustomerInfoBloc extends Bloc<CustomerInfoEvent, CustomerInfoState> {
       try {
         yield CustomerInfoLoading();
         final response = await _customerInfoRepository.getAllCustomerInfo();
-        yield CustomerInfoSuccess(CustomerInfoModel.fromJson(response.data));
+        final list = <CustomerInfoModel>[];
+        response.data.forEach((v) {
+          list.add(new CustomerInfoModel.fromJson(v));
+        });
+        yield CustomerInfoSuccess(list);
       } catch (e) {
         yield CustomerInfoError(e.toString());
       }

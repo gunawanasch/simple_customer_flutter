@@ -1,3 +1,11 @@
+import 'dart:convert';
+
+List<CustomerInfoModel> customerInfoModelFromJson(String str) => List<CustomerInfoModel>.from(
+    json.decode(str).map((x) => CustomerInfoModel.fromJson(x)));
+
+String photosModelToJson(List<CustomerInfoModel> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
 class CustomerInfoModel {
   int idCustomerInfo;
   String name;

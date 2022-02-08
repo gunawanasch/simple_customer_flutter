@@ -18,7 +18,7 @@ class CustomerInfoLoading extends CustomerInfoState {
 }
 
 class CustomerInfoSuccess extends CustomerInfoState {
-  final CustomerInfoModel customerInfoModel;
+  final List<CustomerInfoModel> customerInfoModel;
   const CustomerInfoSuccess(this.customerInfoModel);
   @override
   List<Object> get props => [CustomerInfoModel];

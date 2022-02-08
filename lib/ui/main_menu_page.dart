@@ -66,7 +66,6 @@ class _MainMenuPageState extends State<MainMenuPage> {
   Future _logout() async {
     final _sp = await SharedPreferences.getInstance();
     await _sp.clear();
-
     return true;
   }
 

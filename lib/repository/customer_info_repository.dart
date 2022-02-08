@@ -1,11 +1,14 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
+import 'package:simple_customer_flutter/model/customer_info_model.dart';
 import 'package:simple_customer_flutter/network/api_base_helper.dart';
 
 class CustomerInfoRepository {
   APIBaseHelper _helper = APIBaseHelper();
 
   Future<Response> getAllCustomerInfo() async {
-    Response response = await _helper.get("customerInfo/getAllCustomerInfo");
+    Response response = await _helper.get("v1/getAllCustomerInfo");
 
     return response;
   }

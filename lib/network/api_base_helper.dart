@@ -10,7 +10,13 @@ class APIBaseHelper {
   Future<Response> get(String url) async {
     var responseJson;
     try {
-      final response = await _dio.get(_baseUrl + url);
+      final response = await _dio.get(
+          _baseUrl + url,
+          options: Options(
+            headers: {
+              'Accept': 'application/json'
+            })
+      );
       responseJson = _returnResponse(response);
     } on SocketException {
       throw FetchDataException("No Internet connection");

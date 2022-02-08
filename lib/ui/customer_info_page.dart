@@ -13,13 +13,16 @@ class CustomerInfoPage extends StatefulWidget {
 }
 
 class _CustomerInfoPageState extends State<CustomerInfoPage> {
-  // CustomerInfoBloc _customerInfoBloc = CustomerInfoBloc(CustomerInfoRepository());
+  CustomerInfoBloc _customerInfoBloc = CustomerInfoBloc(CustomerInfoRepository());
 
-  // @override
-  // void initState() {
-  //   _customerInfoBloc.add(CustomerInfo());
-  //   super.initState();
-  // }
+  @override
+  void initState() {
+    _customerInfoBloc.add(CustomerInfo());
+    super.initState();
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +38,9 @@ class _CustomerInfoPageState extends State<CustomerInfoPage> {
               return Center(child: CircularProgressIndicator());
             } else if (state is CustomerInfoSuccess) {
               return ListView.builder(
+                  itemCount: state.customerInfoModel.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return CustomerInfoRow(customerInfoModel: state.customerInfoModel);
+                    return CustomerInfoRow(customerInfoModel: state.customerInfoModel[index]);
                   }
               );
             } else if (state is CustomerInfoError) {
@@ -66,8 +70,8 @@ class CustomerInfoRow extends StatelessWidget {
         // ));
       },
       child: Container(
-        height: 150,
-        padding: EdgeInsets.all(5.0),
+        height: 100,
+        padding: EdgeInsets.all(5),
         child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -76,7 +80,7 @@ class CustomerInfoRow extends StatelessWidget {
             children: [
               Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(6.0),
+                    padding: EdgeInsets.all(8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -90,7 +94,7 @@ class CustomerInfoRow extends StatelessWidget {
                         SizedBox(height: 5),
                         Text(
                           customerInfoModel.phone,
-                          maxLines: 3,
+                          maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(fontSize: 15),
                         ),

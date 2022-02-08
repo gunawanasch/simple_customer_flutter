@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: PrimaryColor,
         primaryColorLight: PrimaryColor,
-        accentColor: AccentColor,
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: AccentColor),
       ),
       home: SplashPage(),
     );

@@ -10,7 +10,7 @@ class LoginRepository {
       "password": password,
     });
 
-    Response response = await _helper.post("user/login",
+    Response response = await _helper.post("v1/login",
       formData: formData,
     );
 
