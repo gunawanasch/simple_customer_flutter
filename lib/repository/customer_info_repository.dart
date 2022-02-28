@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:simple_customer_flutter/model/customer_info_model.dart';
 import 'package:simple_customer_flutter/network/api_base_helper.dart';
 
 class CustomerInfoRepository {
