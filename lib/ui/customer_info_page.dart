@@ -6,6 +6,7 @@ import 'package:simple_customer_flutter/bloc/customer_info/customer_info_event.d
 import 'package:simple_customer_flutter/bloc/customer_info/customer_info_state.dart';
 import 'package:simple_customer_flutter/model/customer_info_model.dart';
 import 'package:simple_customer_flutter/repository/customer_info_repository.dart';
+import 'package:simple_customer_flutter/ui/detail_customer_info_page.dart';
 
 class CustomerInfoPage extends StatefulWidget {
   @override
@@ -19,9 +20,6 @@ class _CustomerInfoPageState extends State<CustomerInfoPage> {
   void initState() {
     _customerInfoBloc.add(CustomerInfo());
     super.initState();
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //
-    // });
   }
 
   @override
@@ -63,47 +61,41 @@ class CustomerInfoRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(context, MaterialPageRoute(
-        //     builder: (context) {
-        //       return UpcomingMoviesDetailPage(resultsUpcomingMovies: resultsUpcomingMovies);
-        //     }
-        // ));
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) {
+              return DetailCustomerInfoPage(idCustomerInfo: customerInfoModel.idCustomerInfo);
+            }
+        ));
       },
-      child: Container(
-        height: 100,
-        padding: EdgeInsets.all(5),
-        child: Card(
-          elevation: 5,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                  child: Container(
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          customerInfoModel.name,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
+      child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+                child: Container(
+                  padding: EdgeInsets.all(8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        customerInfoModel.name,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
-                        SizedBox(height: 5),
-                        Text(
-                          customerInfoModel.phone,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ],
-                    ),
-                  )
-              ),
-            ],
-          ),
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        customerInfoModel.phone,
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ],
+                  ),
+                )
+            ),
+          ],
         ),
       ),
     );

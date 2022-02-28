@@ -12,9 +12,6 @@ class CustomerInfoBloc extends Bloc<CustomerInfoEvent, CustomerInfoState> {
 
   CustomerInfoBloc(this._customerInfoRepository) : super(CustomerInfoInitial());
 
-  // @override
-  // CustomerInfoState get initialState => CustomerInfoInitial();
-
   @override
   Stream<CustomerInfoState> mapEventToState(
       CustomerInfoEvent event,
