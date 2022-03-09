@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_customer_flutter/bloc/detail_customer_info/detail_customer_info_bloc.dart';
 import 'package:simple_customer_flutter/bloc/detail_customer_info/detail_customer_info_event.dart';
 import 'package:simple_customer_flutter/bloc/detail_customer_info/detail_customer_info_state.dart';
-import 'package:simple_customer_flutter/model/detail_customer_info_model.dart';
 import 'package:simple_customer_flutter/repository/detail_customer_info_repository.dart';
 
 class DetailCustomerInfoPage extends StatelessWidget {
@@ -104,18 +103,6 @@ class DetailCustomerInfoPage extends StatelessWidget {
             }
           },
         ),
-        // child: SingleChildScrollView(
-        //   scrollDirection: Axis.vertical,
-        //   child: Container(
-        //     padding: EdgeInsets.all(8),
-        //     child: Column(
-        //       crossAxisAlignment: CrossAxisAlignment.start,
-        //       children: [
-        //
-        //       ],
-        //     ),
-        //   ),
-        // ),
       ),
     );
   }
