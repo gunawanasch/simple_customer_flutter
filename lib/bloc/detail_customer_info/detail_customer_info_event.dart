@@ -17,4 +17,5 @@ class DetailCustomerInfo extends DetailCustomerInfoEvent {
 
   @override
   String toString() => "DetailCustomerInfo { id_customer_info: $idCustomerInfo }";
+
 }

@@ -107,7 +107,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _registerButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if(_nameController.text.trim().isEmpty || _emailController.text.trim().isEmpty || _passwordController.text.trim().isEmpty) {
+        if (_nameController.text.trim().isEmpty || _emailController.text.trim().isEmpty || _passwordController.text.trim().isEmpty) {
           return showDialog(
             context: context,
             builder: (ctx) => AlertDialog(

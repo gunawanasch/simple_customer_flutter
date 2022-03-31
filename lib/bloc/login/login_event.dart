@@ -19,4 +19,5 @@ class Login extends LoginEvent {
 
   @override
   String toString() => "Login { email: $email, password: $password }";
+
 }

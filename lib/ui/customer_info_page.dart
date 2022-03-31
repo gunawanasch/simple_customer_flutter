@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_customer_flutter/bloc/customer_info/customer_info_bloc.dart';
@@ -36,9 +35,9 @@ class _CustomerInfoPageState extends State<CustomerInfoPage> {
               return Center(child: CircularProgressIndicator());
             } else if (state is CustomerInfoSuccess) {
               return ListView.builder(
-                  itemCount: state.customerInfoModel.length,
+                  itemCount: state.listCustomerInfo.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return CustomerInfoRow(customerInfoModel: state.customerInfoModel[index]);
+                    return CustomerInfoRow(customerInfoModel: state.listCustomerInfo[index]);
                   }
               );
             } else if (state is CustomerInfoError) {

@@ -8,4 +8,5 @@ class CustomerInfo extends CustomerInfoEvent {
 
   @override
   List<Object> get props => null;
+
 }

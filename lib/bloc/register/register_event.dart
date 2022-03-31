@@ -21,4 +21,5 @@ class Register extends RegisterEvent {
 
   @override
   String toString() => "Register { name: $name, email: $email, password: $password }";
+
 }

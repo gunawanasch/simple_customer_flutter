@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _loginButton(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if(_emailController.text.trim().isEmpty || _passwordController.text.trim().isEmpty) {
+        if (_emailController.text.trim().isEmpty || _passwordController.text.trim().isEmpty) {
           return showDialog(
             context: context,
             builder: (ctx) => AlertDialog(

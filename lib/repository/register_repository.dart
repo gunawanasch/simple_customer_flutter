@@ -11,7 +11,7 @@ class RegisterRepository {
       "password": password,
     });
 
-    Response response = await _helper.post("user/register",
+    Response response = await _helper.post("v1/register",
       formData: formData,
     );
 
